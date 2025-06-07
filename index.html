@@ -5,34 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake and Ladder Game</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
-        
         body {
             font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             background-color: #f5f5f5;
-            padding: 10px;
+            padding: 20px;
             min-height: 100vh;
-            margin: 0;
         }
         
         .game-wrapper {
             display: flex;
             gap: 30px;
             align-items: flex-start;
-            width: 100%;
-            max-width: 1200px;
         }
         
         .left-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            flex: 1;
         }
         
         h1 {
@@ -40,15 +32,12 @@
             margin-bottom: 20px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
             text-align: center;
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            line-height: 1.2;
         }
         
         .game-container {
             position: relative;
-            width: 100%;
-            max-width: 600px;
-            aspect-ratio: 1 / 1;
+            width: 600px;
+            height: 600px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             border-radius: 10px;
             overflow: hidden;
@@ -66,8 +55,8 @@
         }
         
         .player {
-            width: clamp(24px, 5vw, 32px);
-            height: clamp(24px, 5vw, 32px);
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             position: absolute;
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -78,8 +67,8 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: clamp(12px, 2.5vw, 16px);
-            border: 2px solid white;
+            font-size: 16px;
+            border: 3px solid white;
         }
         
         .player1 {
@@ -95,25 +84,24 @@
             flex-direction: column;
             align-items: center;
             background-color: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            width: 100%;
-            max-width: 300px;
+            width: 280px;
             margin-top: 20px;
         }
         
         .status {
-            font-size: clamp(16px, 3.5vw, 20px);
+            font-size: 20px;
             margin-bottom: 20px;
-            padding: 15px 20px;
+            padding: 15px 25px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-radius: 10px;
             text-align: center;
             font-weight: bold;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            width: 100%;
+            min-width: 220px;
         }
         
         .dice-container {
@@ -121,16 +109,15 @@
             flex-direction: column;
             align-items: center;
             margin: 20px 0;
-            width: 100%;
         }
         
         .dice {
-            font-size: clamp(24px, 6vw, 32px);
-            padding: 15px;
+            font-size: 32px;
+            padding: 20px;
             background: linear-gradient(145deg, #ffffff, #e6e6e6);
             border-radius: 12px;
-            width: clamp(60px, 15vw, 80px);
-            height: clamp(60px, 15vw, 80px);
+            width: 80px;
+            height: 80px;
             text-align: center;
             box-shadow: 
                 0 8px 16px rgba(0,0,0,0.1),
@@ -145,8 +132,8 @@
         }
         
         button {
-            padding: 15px 25px;
-            font-size: clamp(14px, 3vw, 18px);
+            padding: 15px 30px;
+            font-size: 18px;
             background: linear-gradient(145deg, #2ecc71, #27ae60);
             color: white;
             border: none;
@@ -156,18 +143,11 @@
             font-weight: bold;
             letter-spacing: 1px;
             box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3);
-            width: 100%;
-            min-height: 48px;
-            touch-action: manipulation;
         }
         
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4);
-        }
-        
-        button:active {
-            transform: translateY(0);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.4);
         }
         
         button:disabled {
@@ -195,7 +175,7 @@
         
         @keyframes playerJump {
             0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-10px) scale(1.1); }
+            50% { transform: translateY(-20px) scale(1.1); }
         }
         
         .snake-slide {
@@ -237,15 +217,14 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             margin-top: 20px;
-            font-size: clamp(12px, 2.5vw, 14px);
+            font-size: 14px;
             color: #555;
-            width: 100%;
         }
         
         .player-info {
             display: flex;
             justify-content: space-between;
-            margin: 8px 0;
+            margin: 10px 0;
             padding: 8px 12px;
             background-color: #f8f9fa;
             border-radius: 6px;
@@ -254,122 +233,12 @@
         
         .player1-info { border-left: 4px solid #e74c3c; }
         .player2-info { border-left: 4px solid #3498db; }
-        
-        /* Mobile-specific styles */
-        @media (max-width: 768px) {
-            body {
-                padding: 5px;
-            }
-            
-            .game-wrapper {
-                flex-direction: column;
-                gap: 20px;
-                align-items: center;
-            }
-            
-            .left-section {
-                width: 100%;
-            }
-            
-            .controls {
-                max-width: 100%;
-                width: 100%;
-                padding: 15px;
-                margin-top: 0;
-            }
-            
-            h1 {
-                margin-bottom: 15px;
-                padding: 0 10px;
-            }
-            
-            .game-container {
-                margin-bottom: 10px;
-            }
-            
-            .player {
-                border-width: 1px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 2px;
-            }
-            
-            .game-wrapper {
-                gap: 15px;
-            }
-            
-            .controls {
-                padding: 12px;
-            }
-            
-            .status {
-                padding: 12px 15px;
-                margin-bottom: 15px;
-            }
-            
-            .dice-container {
-                margin: 15px 0;
-            }
-            
-            .dice {
-                margin-bottom: 15px;
-                padding: 12px;
-            }
-            
-            button {
-                padding: 12px 20px;
-                min-height: 44px;
-            }
-            
-            .game-info {
-                padding: 12px;
-                margin-top: 15px;
-            }
-            
-            .player-info {
-                margin: 6px 0;
-                padding: 6px 10px;
-            }
-        }
-        
-        /* Landscape mode adjustments for small screens */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .game-wrapper {
-                flex-direction: row;
-                gap: 15px;
-            }
-            
-            .left-section {
-                flex: 1;
-            }
-            
-            .controls {
-                width: 250px;
-                margin-top: 0;
-            }
-            
-            h1 {
-                font-size: 1.2rem;
-                margin-bottom: 10px;
-            }
-        }
-        
-        /* Touch-friendly hover states */
-        @media (hover: none) and (pointer: coarse) {
-            button:hover {
-                transform: none;
-                box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3);
-            }
-        }
     </style>
 </head>
 <body>
     <div class="game-wrapper">
         <div class="left-section">
-            <h1>🐍 Snake and Ladder Game 🪜</h1>
+            <h1>🐍 Snake and Ladder Game 🪜(Gaurav kandel)</h1>
             <div class="game-container">
                 <div id="game-board"></div>
             </div>
@@ -401,6 +270,8 @@
             // Game configuration
             const boardSize = 10;
             const totalCells = boardSize * boardSize;
+            const cellWidth = 56;
+            const cellHeight = 56;
             
             // Players
             const players = [
@@ -412,7 +283,6 @@
             let diceValue = 0;
             let gameOver = false;
             let isMoving = false;
-            let cellDimensions = { width: 0, height: 0 };
             
             // Snakes and ladders based on the board image (start -> end)
             const snakes = {
@@ -449,8 +319,6 @@
             initGame();
             
             function initGame() {
-                calculateCellDimensions();
-                
                 // Create player tokens
                 players.forEach(player => {
                     const playerElement = document.createElement('div');
@@ -466,24 +334,6 @@
                 
                 // Event listeners
                 rollBtn.addEventListener('click', rollDice);
-                rollBtn.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    if (!rollBtn.disabled) {
-                        rollDice();
-                    }
-                });
-                
-                // Recalculate dimensions on window resize
-                window.addEventListener('resize', function() {
-                    calculateCellDimensions();
-                    updatePlayerPositions();
-                });
-            }
-            
-            function calculateCellDimensions() {
-                const boardRect = gameBoard.getBoundingClientRect();
-                cellDimensions.width = boardRect.width / boardSize;
-                cellDimensions.height = boardRect.height / boardSize;
             }
             
             function rollDice() {
@@ -526,7 +376,6 @@
                         // Add jump animation for each step
                         const playerElement = document.getElementById(`player-${currentPlayer.id}`);
                         playerElement.classList.add('player-jump');
-                        setTimeout(() => playerElement.classList.remove('player-jump'), 500);
                         
                         updatePlayerPositions();
                         updatePlayerInfo();
@@ -616,9 +465,8 @@
                     
                     // If both players are on same position, offset them
                     if (players[0].position === players[1].position && players.length === 2) {
-                        const offsetDistance = Math.min(cellDimensions.width * 0.2, 12);
-                        offsetX = player.id === 1 ? -offsetDistance : offsetDistance;
-                        offsetY = player.id === 1 ? -offsetDistance : offsetDistance;
+                        offsetX = player.id === 1 ? -12 : 12;
+                        offsetY = player.id === 1 ? -12 : 12;
                     }
                     
                     playerElement.style.left = `${x + offsetX}px`;
@@ -639,8 +487,8 @@
                     boardSize - 1 - ((cellNumber - 1) % boardSize);
                 
                 // Calculate pixel coordinates - adjusted to center players in cells
-                const x = col * cellDimensions.width + cellDimensions.width / 2 - 16;
-                const y = (boardSize - 1 - row) * cellDimensions.height + cellDimensions.height / 2 - 16;
+                const x = col * cellWidth + 28;
+                const y = (boardSize - 1 - row) * cellHeight + 28;
                 
                 return { x, y };
             }
